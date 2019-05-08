@@ -1,17 +1,20 @@
 ﻿/// <summary>
-/// The MonteCarloPI.cs file
+/// MonteCarloPI.cs 
 /// </summary>
 namespace MontecarloAlgorithms
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System;
 
     /// <summary>
-    /// The MonteCarloPI implementation
+    /// MonteCarloPI class
     /// </summary>
     public class MonteCarloPI
     {
+        /// <summary>
+        /// Internal declaration of points dictionary
+        /// </summary>
         private List<MPoint> points;
         private Random rnd;
         public List<MPoint> Points { get { return points; } }
@@ -52,10 +55,13 @@ namespace MontecarloAlgorithms
         /// <returns>An instance of MPoint.</returns>
         private MPoint GenerateRandomPoint()
         {
-            float x = GenerateRandomCoordinate();
-            float y = GenerateRandomCoordinate();
+            float x = GenerateRandomValue();
+            float y = GenerateRandomValue();
 
-            MPoint newOne = new MPoint(x, y, false);
+            double ratio = Math.Sqrt(x * x + y * y);
+            bool insideCircle = ratio <= 0.5;
+
+            MPoint newOne = new MPoint(x, y, insideCircle);
             return newOne;
         }
 

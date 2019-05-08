@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// The MPoint.cs file.
+/// The auxiliar MPoint file.
 /// </summary>
 namespace MontecarloAlgorithms
 {

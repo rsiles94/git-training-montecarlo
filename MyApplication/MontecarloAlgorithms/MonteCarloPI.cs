@@ -16,14 +16,20 @@ namespace MontecarloAlgorithms
         /// Internal declaration of points dictionary
         /// </summary>
         private List<MPoint> points;
-
-        /// <summary>
-        /// The public declaration of points.
-        /// </summary>
+        private Random rnd;
         public List<MPoint> Points { get { return points; } }
 
         /// <summary>
-        /// Use this method to generate a new point.
+        /// The MonteCarloPI constructor.
+        /// </summary>
+        public MonteCarloPI()
+        {
+            this.rnd = new Random();
+            this.points = new List<MPoint>();
+        }
+
+        /// <summary>
+        /// Method to generate a new point.
         /// </summary>
         public void GeneratePoint()
         {
@@ -32,29 +38,21 @@ namespace MontecarloAlgorithms
         }
 
         /// <summary>
-        /// Returns PI value
+        /// Method to generate PI.
         /// </summary>
-        /// <returns>The PI approximation</returns>
+        /// <returns></returns>
         public float GetPI()
         {
-            int circleCounter = this.points.Count(x=>x.insideCircle);
+            int circleCounter = this.points.Count(x=>x.InsideCircle);
             int rectangleCounter = this.points.Count;
 
             return 4.0f * circleCounter / rectangleCounter;
         }
 
         /// <summary>
-        /// Constructor
+        /// Generates a new random point.
         /// </summary>
-        public MonteCarloPI()
-        {
-            this.points = new List<MPoint>();
-        }
-
-        /// <summary>
-        /// Generates a new random point
-        /// </summary>
-        /// <returns>The random point</returns>
+        /// <returns>An instance of MPoint.</returns>
         private MPoint GenerateRandomPoint()
         {
             float x = GenerateRandomValue();
@@ -68,12 +66,11 @@ namespace MontecarloAlgorithms
         }
 
         /// <summary>
-        /// Generates a random value
+        /// Generates the random coordinates.
         /// </summary>
-        /// <returns>The random value</returns>
-        private float GenerateRandomValue()
+        /// <returns>The random value.</returns>
+        private float GenerateRandomCoordinate()
         {
-            Random rnd = new Random();
             return (float)rnd.NextDouble() - 0.5f;
         }
     }
